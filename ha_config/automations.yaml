@@ -1,0 +1,11 @@
+#automation:
+- alias: "Notify if temperature is out of bounds"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.temp_sensor
+    above: 30
+    below: 28
+  action:
+    service: notify.telegram
+    data_template:
+      message: "*WARNING!* Temperature is {{states.sensor.temp_sensor.state}}C"
